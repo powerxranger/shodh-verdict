@@ -78,7 +78,26 @@ The cache key is SHA-256 of the canonical JSON of requirements + spec + workflow
 - **Similarity scores / polished prompts** — no counterexample, no proof, no status discipline.
 - **Silently dropping unsupported content** — hides exactly the risk a reviewer must surface.
 
-## 9. Known limitations
+## 9. Extending the supported scope (maintainability)
+
+Adding a feature follows a fixed seam rather than a new prompt:
+
+1. Add the construct to the source grammar (`patterns.py`) and/or AST allow-list (`python_subset.py`).
+2. Extend domain construction in `semantics.py` so the new construct still has complete representative values.
+3. Add a parser/equivalence test and a frozen evaluation case.
+4. CI reruns the full suite, the frozen evaluation and the ablation automatically.
+
+The reviewer logic, status semantics and model-trust gate do not change. This is the same change discipline you would apply to a production rules engine.
+
+## 10. Production-readiness notes
+
+- CLI and library API are both available; the CLI exits non-zero for non-PASS outcomes so it can gate a pipeline.
+- Pinned dependencies and a CI workflow make a clean checkout reproducible.
+- Content hashes of every artifact and approval are recorded in each report for audit.
+- Bounded retries, token limits, input-size limits and an opt-in execution subprocess prevent runaway behaviour.
+- Unsupported scope is disclosed instead of being silently accepted, so a caller can distinguish "correct" from "not fully checked".
+
+## 11. Known limitations
 
 - Supported domain is intentionally small; extending it means adding grammar + domain construction + tests.
 - Numeric features are treated as real-valued; integer-only semantics are a subset (integer counterexamples are still produced at boundaries).

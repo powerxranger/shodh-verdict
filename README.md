@@ -14,6 +14,20 @@ Verdict decides whether a ticket-routing implementation actually follows its wri
 
 ---
 
+## Positioning: full-time readiness *and* internship potential
+
+The same assessment is being considered for both full-time and internship hiring. This submission is deliberately built to demonstrate **readiness for full-time engineering responsibility**, not just task completion:
+
+- **End-to-end ownership** — contracts, parser, compilers, equivalence engine, model-trust layer, evaluation harness, debugging record and documentation all designed and implemented here.
+- **Engineering discipline** — pinned dependencies, reproducible CPU environment, CLI + API, 54 automated tests, GitHub Actions CI running tests, frozen evaluation and ablation on every push.
+- **Correctness over demonstration** — a proof-style equivalence argument, counterexamples with expected/actual routes, explicit unreviewed scope, and status semantics that refuse to turn failures into `PASS`.
+- **Trust and safety thinking** — approval-authority firewall, prompt-injection resistance, validation of model claims, and untrusted Python never executed by default.
+- **Maintainability** — small module boundaries and a documented extension path (`DESIGN.md`), so the supported scope can grow without rewriting the review logic.
+
+At the same time, the project openly documents what is *not* verified and where judgment is still needed — the kind of scoped honesty expected of a strong intern. The right pathway is for the hiring team to decide; the submission supports either.
+
+---
+
 ## Quickstart
 
 ```powershell

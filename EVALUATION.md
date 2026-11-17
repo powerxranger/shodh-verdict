@@ -122,3 +122,5 @@ Validated in `tests/test_model_and_cache.py`:
 ## 7. Test suite
 
 `python -m pytest` → **54 passed**, covering parsers, units, approvals, equivalence, workflow compilation, Python-subset inspection, model validation, cache invalidation, the two regressions and every frozen case.
+
+The same three commands (tests, frozen evaluation, ablation) run automatically in GitHub Actions via `.github/workflows/ci.yml`, so a reviewer can reproduce every number in this document from a clean checkout.

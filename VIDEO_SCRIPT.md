@@ -6,7 +6,7 @@ Target: ~2:00 at a measured, calm pace. Record screen + webcam if possible; show
 
 **0:00–0:15 — Introduction**
 
-"Hi, I'm Krish Aggarwal, an AI/ML engineering candidate. I built **Verdict**, a Python application that reviews whether a written policy, a structured spec, a decision workflow and linked Python code actually agree. It returns PASS, CHANGES_REQUIRED or INCOMPLETE with evidence — not just a similarity score."
+"Hi, I'm Krish Aggarwal, interviewing for an AI/ML engineering role at Shodh AI — I'm open to whichever pathway the team thinks fits best. I built **Verdict**, a Python application that reviews whether a written policy, a structured spec, a decision workflow and linked Python code actually agree. It returns PASS, CHANGES_REQUIRED or INCOMPLETE with evidence — not just a similarity score."
 
 **0:15–0:55 — The project and the core idea**
 
@@ -26,11 +26,11 @@ Target: ~2:00 at a measured, calm pace. Record screen + webcam if possible; show
 
 **1:25–1:50 — Debugging and rigour**
 
-"I preserved two deliberate fault-injection cycles: removing unit conversion and breaking the workflow's false-branch negation. Each has the actual failing output, a diagnosis, a focused fix and a regression test. Code inspection, syntax checking and execution are separate, and execution is off by default."
+"I preserved two deliberate fault-injection cycles: removing unit conversion and breaking the workflow's false-branch negation. Each has the actual failing output, a diagnosis, a focused fix and a regression test. Code inspection, syntax checking and execution are separate, and execution is off by default. The repo also has CI that reruns the tests, the frozen evaluation and the ablation on every push."
 
 **1:50–2:00 — Why Shodh AI**
 
-"I want to join Shodh AI because this assessment matches how I like to work: define contracts, make correctness checkable, and be honest about what hasn't been verified. I'd bring that discipline to your AI/ML engineering team. Thank you."
+"I want to join Shodh AI because this assessment matches how I like to work: define contracts, make correctness checkable, and be honest about what hasn't been verified. I'm comfortable owning a feature end to end — design, tests, evaluation and debugging — so I'd be ready for full-time responsibility, and I'd also value the practical growth of an internship. Either way, I'd bring that discipline to your team. Thank you."
 
 ---
 
@@ -39,4 +39,5 @@ Target: ~2:00 at a measured, calm pace. Record screen + webcam if possible; show
 - [ ] Keep links to Drive files set to **Anyone with the link → Viewer**.
 - [ ] Open both links in a logged-out/incognito window to confirm no access request.
 - [ ] Repo public, README visible, no secrets in files or history.
+- [ ] In the form, select the **relevant technical role** (e.g. *AI/ML Engineer*). The hiring team confirmed the "Intern" wording does not limit consideration, so if only *AI/ML Engineer Intern* is offered, that is still fine.
 - [ ] Keep under 2:05; trim section 2 if needed.
