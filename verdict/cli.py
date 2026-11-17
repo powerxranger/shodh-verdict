@@ -15,7 +15,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="verdict", description=__doc__)
     parser.add_argument("bundle", nargs="?", help="path to a JSON bundle")
     parser.add_argument("--demo", action="store_true", help="run the built-in synthetic demo")
-    parser.add_argument("--out", help="write the JSON report to this path")
+    parser.add_argument(
+        "--format", choices=("json", "text"), default="json",
+        help="report output format (default: json; text is human-readable)",
+    )
+    parser.add_argument("--out", help="write the report to this path in --format")
     parser.add_argument("--scenario", help="fake model scenario")
     parser.add_argument("--ablate", action="store_true", help="disable exhaustive equivalence")
     parser.add_argument("--require-model", action="store_true")
@@ -36,19 +40,19 @@ def main(argv: list[str] | None = None) -> int:
     elif args.bundle:
         bundle = None
         report = review_file(args.bundle, config, use_cache=not args.no_cache)
-        return _emit(report, args.out)
+        return _emit(report, args.out, args.format)
     else:
         parser.error("provide a bundle path or --demo")
 
     report = review_bundle(bundle, config, use_cache=not args.no_cache)
-    return _emit(report, args.out)
+    return _emit(report, args.out, args.format)
 
 
-def _emit(report, out: str | None) -> int:
-    payload = report.to_json()
+def _emit(report, out: str | None, fmt: str = "json") -> int:
+    payload = report.to_json() if fmt == "json" else report.to_text()
     if out:
-        save_report(report, out)
-        print(f"Wrote {report.status} report to {out}")
+        save_report(report, out, fmt=fmt)
+        print(f"Wrote {report.status} {fmt} report to {out}")
     else:
         print(payload)
     return 0 if report.status == "PASS" else 2

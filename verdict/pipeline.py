@@ -68,7 +68,11 @@ def review_file(path: str | Path, config: ReviewConfig | None = None,
     return review_bundle(Bundle.model_validate(data), config, use_cache)
 
 
-def save_report(report: ReviewReport, path: str | Path) -> None:
+def save_report(report: ReviewReport, path: str | Path, fmt: str = "json") -> None:
+    """Write a report in the requested format. JSON is the default contract."""
+    if fmt not in ("json", "text"):
+        raise ValueError(f"unsupported report format: {fmt}")
+    content = report.to_json() if fmt == "json" else report.to_text()
     destination = Path(path)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(report.to_json() + "\n", encoding="utf-8")
+    destination.write_text(content + "\n", encoding="utf-8")

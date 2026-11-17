@@ -6,6 +6,7 @@ and every rule carries a source_ref so omissions are visible rather than silent.
 
 from __future__ import annotations
 
+import textwrap
 from typing import Any, Literal
 
 from pydantic import BaseModel, Field
@@ -199,7 +200,91 @@ class ReviewReport(BaseModel):
     config_signature: str = ""
 
     def to_json(self) -> str:
+        """Machine-readable report (the assessment's required output contract)."""
         return self.model_dump_json(indent=2, exclude_none=False)
+
+    def to_text(self) -> str:
+        """Human-readable rendering of the same report for terminal display.
+
+        JSON remains the default and authoritative output; this is a pure view
+        over the identical data, with no extra findings or status logic.
+        """
+        rule = "=" * 76
+
+        def field(label: str, text: str, indent: str = "     ") -> str:
+            prefix = f"{indent}{label}"
+            return textwrap.TextWrapper(
+                width=88, initial_indent=prefix,
+                subsequent_indent=" " * len(prefix),
+            ).fill(str(text)).rstrip()
+
+        lines: list[str] = [rule, "VERDICT - REVIEW REPORT", rule]
+        lines.append(f"  Status : {self.status}")
+        lines.append(field("Summary: ", self.summary, indent="  "))
+        lines.append("")
+
+        cov = self.coverage
+        lines.append("COVERAGE")
+        lines.append(f"  Mode         : {cov.mode}")
+        lines.append(f"  Partitions   : {cov.partitions_tested}")
+        lines.append(f"  Requirements : {', '.join(cov.reviewed_requirements) or 'none'}")
+        lines.append(f"  Artifacts    : {', '.join(cov.artifacts_reviewed) or 'none'}")
+        lines.append(f"  Unreviewed   : {len(cov.unreviewed)} item(s)")
+        for item in cov.unreviewed:
+            lines.append(f"                 - {item.get('scope', '?')}: {item.get('reason', '')}")
+        lines.append(field("Scope: ", cov.supported_scope, indent="  "))
+        lines.append("")
+
+        lines.append("CHECK RESULTS")
+        if not self.check_results:
+            lines.append("  No checks recorded.")
+        for check in self.check_results:
+            mark = "PASS" if check.passed else "FAIL"
+            mode = "exhaustive" if check.exhaustive else "sampled"
+            detail = f" - {check.detail}" if check.detail else ""
+            lines.append(f"  [{mark}] {check.name} ({mode}, {check.partitions} partitions){detail}")
+        lines.append("")
+
+        if self.model is not None:
+            lines.append("MODEL PROVENANCE")
+            lines.append(f"  Client       : {self.model.client}/{self.model.scenario}")
+            lines.append(f"  Real model   : {'yes' if self.model.real_model else 'no (synthetic)'}")
+            lines.append(f"  Attempts     : {self.model.attempts}    Tokens: {self.model.tokens_used}")
+            if self.model.response_sha256:
+                lines.append(f"  Response SHA : {self.model.response_sha256[:16]}...")
+            if self.model.failures:
+                for failure in self.model.failures:
+                    lines.append(f"  Failure      : {failure}")
+            lines.append("")
+
+        lines.append(f"FINDINGS ({len(self.findings)})")
+        if not self.findings:
+            lines.append("  None. No blocker was established by the deterministic review.")
+        for index, finding in enumerate(self.findings, start=1):
+            lines.append(f"  {index}. [{finding.severity.upper()}] {finding.kind} "
+                         f"(origin: {finding.origin})")
+            lines.append(f"     Where   : {finding.artifact}@{finding.version}:{finding.location}")
+            if finding.rule_ref:
+                lines.append(f"     Rule    : {finding.rule_ref}")
+            lines.append(field("Message: ", finding.message))
+            lines.append(field("Fix: ", finding.correction))
+            for evidence in finding.evidence:
+                lines.append(field("Evidence: ", evidence))
+            if finding.expected_route or finding.actual_route or finding.counterexample:
+                lines.append("     Counterexample:")
+                if finding.expected_route or finding.actual_route:
+                    lines.append(f"       expected route: {finding.expected_route or 'n/a'}")
+                    lines.append(f"       actual route  : {finding.actual_route or 'n/a'}")
+                if finding.counterexample is not None:
+                    ticket = finding.counterexample
+                    lines.append(f"       category={ticket.category!r}, urgent={ticket.urgent!r}, "
+                                 f"waiting_minutes={ticket.waiting_minutes!r}")
+            lines.append("")
+
+        lines.append(rule)
+        lines.append(f"RESULT: {self.status}")
+        lines.append(rule)
+        return "\n".join(lines)
 
 
 class Bundle(BaseModel):

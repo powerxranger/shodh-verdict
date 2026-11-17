@@ -29,6 +29,10 @@ Keep it short if the field is limited — the repo and video carry the detail.
 ```powershell
 python -m pytest
 python scripts/run_eval.py
+python -m verdict --demo                                             # required JSON report
+python -m verdict evals/frozen/cases/code_wrong.json --format text  # human-readable counterexample
 git status --short   # must be clean
 git log --oneline --decorate --all
 ```
+
+If a recruiter asks to see the app work, the two `python -m verdict` commands above are enough: the first shows the required JSON report contract, the second shows the same engine's finding in plain English. Both are CLI runs — there is no frontend, and none was requested.

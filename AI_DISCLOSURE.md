@@ -11,7 +11,7 @@ AI tools were used during this assessment, as permitted. This document states ex
 ## What was verified independently
 
 - Every module was executed; the CLI produces the documented JSON report.
-- **54 pytest tests pass**, including a parser/unit/approval/equivalence/model/cache suite, two regression tests for real injected faults, and all 18 frozen evaluation cases.
+- **60 pytest tests pass**, including a parser/unit/approval/equivalence/model/cache suite, two regression tests for real injected faults, and all 18 frozen evaluation cases.
 - The frozen-set hashes are checked on every evaluation run (`verify_freeze`).
 - Before/after reports in `debug/` are actual captured outputs, not generated claims.
 - The baseline comparison and ablation tables in `EVALUATION.md` were produced by `scripts/run_eval.py` and saved as JSON.

@@ -41,13 +41,14 @@ One mechanism was disabled: exhaustive boundary-partition equivalence (`enable_a
 
 | Case | Expected | Exhaustive v1 | Ablated v1 | What changed |
 |---|---|---|---|---|
-| `code_wrong` | CHANGES_REQUIRED | CHANGES_REQUIRED | **PASS** | 8 random samples missed the 3 of 27 partitions where the code routes to the wrong queue → false PASS. |
-| `unsupported_source` | INCOMPLETE (3 counterexamples) | INCOMPLETE | INCOMPLETE (0 counterexamples) | Status preserved by the unsupported-scope path, but concrete evidence vanished. |
-| `missing_branch` | CHANGES_REQUIRED (3 counterexamples) | CHANGES_REQUIRED | CHANGES_REQUIRED (0 counterexamples) | Structural branch check still catches it; behavioural evidence vanished. |
-| `precedence_swapped` | CHANGES_REQUIRED | CHANGES_REQUIRED | CHANGES_REQUIRED (wrong finding kind) | Sampled counterexamples exercised different rule interactions. |
-| `unit_mismatch` | CHANGES_REQUIRED | CHANGES_REQUIRED | CHANGES_REQUIRED (wrong finding kind) | Explicit declaration check remains; behavioural evidence degraded. |
+| `code_wrong` | CHANGES_REQUIRED | CHANGES_REQUIRED, 3 counterexamples | **PASS**, 0 findings | All 8 sampled inputs happened to agree; the exhaustive run finds 8 of 27 partitions where the code routes to the wrong queue → false PASS. |
+| `precedence_swapped` | CHANGES_REQUIRED | CHANGES_REQUIRED (`INCORRECT_PRECEDENCE`, 6 counterexamples) | CHANGES_REQUIRED but wrong finding kind (`CHANGED_THRESHOLD`, 4 counterexamples) | Sampling exercised different rule interactions, so the diagnosis degraded even though the status survived. |
+| `unsupported_source` | INCOMPLETE | INCOMPLETE, 3 counterexamples | INCOMPLETE, 0 counterexamples | The unsupported-scope path preserves the status, but the concrete evidence vanishes. |
+| `missing_branch` | CHANGES_REQUIRED | CHANGES_REQUIRED, 3 counterexamples | CHANGES_REQUIRED, 0 counterexamples | The structural branch check still catches it; behavioural evidence vanishes. |
 
-Ablated totals: **15/18 correct** vs 18/18 exhaustive. The mechanism demonstrably prevents a false PASS and supplies reproducible counterexamples. A mechanism with no demonstrated benefit would have been removed.
+`unit_mismatch` still passes under ablation because its explicit unit-declaration check is independent of the domain. Sampled reports honestly label `coverage.mode = sampled` and report 8 tested partitions rather than the full 27.
+
+Ablated totals: **16/18 correct** vs 18/18 exhaustive. The mechanism demonstrably prevents a false PASS and supplies reproducible counterexamples: removing it both hides a real code defect and degrades the quality of the findings that remain. A mechanism with no demonstrated benefit would have been removed.
 
 ## 4. Debugging example 1 — unit normalisation
 
@@ -121,6 +122,6 @@ Validated in `tests/test_model_and_cache.py`:
 
 ## 7. Test suite
 
-`python -m pytest` → **54 passed**, covering parsers, units, approvals, equivalence, workflow compilation, Python-subset inspection, model validation, cache invalidation, the two regressions and every frozen case.
+`python -m pytest` → **60 passed**, covering parsers, units, approvals, equivalence, workflow compilation, Python-subset inspection, model validation, cache invalidation, CLI output formats (JSON default and opt-in text), the two regressions and every frozen case.
 
 The same three commands (tests, frozen evaluation, ablation) run automatically in GitHub Actions via `.github/workflows/ci.yml`, so a reviewer can reproduce every number in this document from a clean checkout.

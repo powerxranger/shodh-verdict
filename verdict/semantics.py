@@ -38,6 +38,10 @@ class Domain:
 
     @property
     def size(self) -> int:
+        # A sampled domain tests `sample_size` inputs, not the whole product;
+        # reporting the product there would overstate actual coverage.
+        if not self.exhaustive:
+            return self.sample_size or 1
         n = 1
         for vals in self.values.values():
             n *= len(vals)

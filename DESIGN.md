@@ -92,6 +92,7 @@ The reviewer logic, status semantics and model-trust gate do not change. This is
 ## 10. Production-readiness notes
 
 - CLI and library API are both available; the CLI exits non-zero for non-PASS outcomes so it can gate a pipeline.
+- The JSON report is the authoritative machine-readable contract; `--format text` / `report.to_text()` is a pure view over the same object for human display, so the two formats can never disagree on status or findings.
 - Pinned dependencies and a CI workflow make a clean checkout reproducible.
 - Content hashes of every artifact and approval are recorded in each report for audit.
 - Bounded retries, token limits, input-size limits and an opt-in execution subprocess prevent runaway behaviour.

@@ -12,7 +12,7 @@ Target: ~2:00 at a measured, calm pace. Record screen + webcam if possible; show
 
 "The key idea is that all four artifacts compile into one decision program over a ticket — category, urgency and waiting time. I then build a finite input domain from every threshold in every artifact. For each numeric boundary I test the boundary itself, points either side and the intervals between boundaries; for categories I test every constant, missing and an unlisted value. For this supported language that domain is *complete*, so agreement means real equivalence, and disagreement gives a concrete ticket with expected and actual routes."
 
-*Show: `python -m verdict --demo` and the JSON counterexample.*
+*Show: `python -m verdict --demo` for the required JSON contract, then `python -m verdict evals/frozen/cases/code_wrong.json --format text` for a readable counterexample with expected vs actual routes. Mention JSON remains the default; text is a display convenience on the same report.*
 
 "Approvals are a firewall: only top-level approval metadata can change effective requirements. A prose claim like 'APPROVED by product' is flagged and ignored, and contradictory approvals become a blocker rather than silently picking a version."
 

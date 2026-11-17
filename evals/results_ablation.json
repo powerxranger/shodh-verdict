@@ -2,7 +2,7 @@
   "frozen_set_version": "1.0",
   "ablation": true,
   "total": 18,
-  "final_correct": 15,
+  "final_correct": 16,
   "baseline_correct": 10,
   "rows": [
     {
@@ -14,7 +14,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": true,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -27,7 +27,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": true,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -44,7 +44,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": false,
-      "partitions": 45,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 3
     },
@@ -63,7 +63,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": false,
-      "partitions": 45,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 3
     },
@@ -81,7 +81,7 @@
       "final_correct": true,
       "baseline_status": "CHANGES_REQUIRED",
       "baseline_correct": true,
-      "partitions": 45,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 3
     },
@@ -98,7 +98,7 @@
       "final_correct": true,
       "baseline_status": "CHANGES_REQUIRED",
       "baseline_correct": true,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -116,7 +116,7 @@
       "final_correct": false,
       "baseline_status": "PASS",
       "baseline_correct": false,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 4
     },
@@ -133,7 +133,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": false,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -148,7 +148,7 @@
       "final_correct": false,
       "baseline_status": "PASS",
       "baseline_correct": false,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -165,7 +165,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": false,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -182,7 +182,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": true,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -195,7 +195,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": true,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -208,12 +208,13 @@
       "final_status": "CHANGES_REQUIRED",
       "final_finding_kinds": [
         "CHANGED_THRESHOLD",
-        "SCRIPT_DISAGREEMENT"
+        "SCRIPT_DISAGREEMENT",
+        "UNIT_MISMATCH"
       ],
-      "final_correct": false,
+      "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": false,
-      "partitions": 45,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 3
     },
@@ -226,7 +227,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": true,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -243,7 +244,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": false,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -261,7 +262,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": true,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -279,7 +280,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": true,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     },
@@ -296,7 +297,7 @@
       "final_correct": true,
       "baseline_status": "PASS",
       "baseline_correct": true,
-      "partitions": 27,
+      "partitions": 8,
       "coverage_mode": "sampled",
       "counterexamples": 0
     }

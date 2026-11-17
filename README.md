@@ -9,7 +9,7 @@ Verdict decides whether a ticket-routing implementation actually follows its wri
 | Status vocabulary | `PASS` · `CHANGES_REQUIRED` · `INCOMPLETE` |
 | Evaluation | 18/18 frozen cases correct (v0 naive baseline: 10/18) |
 | Deterministic domain | 27–45 representative inputs per case (exhaustive) |
-| Tests | 54 passing |
+| Tests | 60 passing |
 | Runtime | CPU only, no training, no paid service, no UI |
 
 ---
@@ -19,7 +19,7 @@ Verdict decides whether a ticket-routing implementation actually follows its wri
 The same assessment is being considered for both full-time and internship hiring. This submission is deliberately built to demonstrate **readiness for full-time engineering responsibility**, not just task completion:
 
 - **End-to-end ownership** — contracts, parser, compilers, equivalence engine, model-trust layer, evaluation harness, debugging record and documentation all designed and implemented here.
-- **Engineering discipline** — pinned dependencies, reproducible CPU environment, CLI + API, 54 automated tests, GitHub Actions CI running tests, frozen evaluation and ablation on every push.
+- **Engineering discipline** — pinned dependencies, reproducible CPU environment, CLI + API, 60 automated tests, GitHub Actions CI running tests, frozen evaluation and ablation on every push.
 - **Correctness over demonstration** — a proof-style equivalence argument, counterexamples with expected/actual routes, explicit unreviewed scope, and status semantics that refuse to turn failures into `PASS`.
 - **Trust and safety thinking** — approval-authority firewall, prompt-injection resistance, validation of model claims, and untrusted Python never executed by default.
 - **Maintainability** — small module boundaries and a documented extension path (`DESIGN.md`), so the supported scope can grow without rewriting the review logic.
@@ -36,10 +36,14 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
-# Run the built-in synthetic demo -> full JSON report on stdout
+# Run the built-in synthetic demo -> full JSON report on stdout (default)
 python -m verdict --demo
 
-# Run a single synthetic case and save the report
+# Same report as a human-readable terminal summary
+python -m verdict --demo --format text
+
+# Run a single failing case in readable form, or save a JSON report
+python -m verdict evals/frozen/cases/code_wrong.json --format text --no-cache
 python scripts/capture_case.py pass reports/pass.json
 
 # Run the frozen evaluation (generates the frozen set on first run)
@@ -52,7 +56,38 @@ python scripts/run_eval.py --ablate
 python -m pytest
 ```
 
-CLI flags: `--scenario {valid_clean,valid_finding,truncated,malformed,invented_ref,conflicting,injection,overclaim,timeout}`, `--ablate`, `--require-model`, `--execute-code`, `--no-cache`, `--out <path>`.
+CLI flags: `--format {json,text}` (default `json`), `--scenario {valid_clean,valid_finding,truncated,malformed,invented_ref,conflicting,injection,overclaim,timeout}`, `--ablate`, `--require-model`, `--execute-code`, `--no-cache`, `--out <path>`.
+
+### Output formats
+
+JSON is the **default and authoritative** output because the assessment explicitly requires a JSON report with `status`, `summary`, `findings`, `coverage` and `check_results`. Use `--format text` only for human display — it is a pure rendering of the same report object (no extra logic, no different verdict):
+
+```
+============================================================================
+VERDICT - REVIEW REPORT
+============================================================================
+  Status : CHANGES_REQUIRED
+  Summary: 1 evidenced blocker(s) across 3 finding(s).
+
+COVERAGE
+  Mode         : exhaustive
+  Partitions   : 27
+  ...
+CHECK RESULTS
+  [FAIL] equivalence:code:routes.py (exhaustive, 27 partitions) - 8 mismatching partitions of 27
+
+FINDINGS (3)
+  1. [BLOCKER] INCORRECT_PRECEDENCE (origin: deterministic)
+     Counterexample:
+       expected route: escalation
+       actual route  : normal_queue
+       category='billing', urgent=False, waiting_minutes=31.0
+============================================================================
+RESULT: CHANGES_REQUIRED
+============================================================================
+```
+
+`--out` honours `--format`, so `--format text --out report.txt` writes the readable version and plain `--out report.json` still writes JSON. Exit codes are unchanged: `0` for `PASS`, `2` otherwise. The same renderer is available from the library API as `report.to_text()`.
 
 ---
 
@@ -145,7 +180,7 @@ scripts/              synthetic data, evaluation harness, case capture
 evals/frozen/         18 frozen cases + SHA-256 manifest + results
 checkpoints/baseline/ preserved v0 naive reviewer
 debug/                two real fault-injection / fix cycles
-tests/                54 tests
+tests/                60 tests
 ```
 
 Reproducible environment: Python 3.12.6, `pydantic==2.12.5`, `pytest==8.3.3`, `pytest-cov==5.0.0`. CPU only.

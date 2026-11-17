@@ -7,9 +7,10 @@ Use 3–4 of these under a **Projects** heading titled *Verdict — AI/ML system
 - Implemented an approval-authority firewall: revision-scoped changes, deterministic change ordering, contradiction detection, and rejection of approval claims embedded in prose or code comments.
 - Built a model-client interface with a deterministic fake and optional HTTP backend; validated reports for invented references, unresolved evidence, truncated/malformed JSON, conflicting claims and coverage overclaims with bounded retries and token budgets.
 - Created an 18-case SHA-256-frozen evaluation suite: 18/18 correct vs a preserved naive baseline's 10/18; a controlled ablation disabling equivalence caused a false PASS, quantifying the mechanism's value.
-- Documented two deliberate fault-injection cycles with captured failing output, diagnosis, focused fixes and regression tests; 54 pytest tests passing.
+- Documented two deliberate fault-injection cycles with captured failing output, diagnosis, focused fixes and regression tests; 60 pytest tests passing.
 - Stack: Python 3.12, Pydantic, pytest, AST, exact `Fraction` arithmetic, stdlib `urllib`; CPU-only, reproducible, no paid services.
 - Owned the delivery pipeline end to end: versioned input contracts, CLI + library API, pinned dependencies, GitHub Actions CI, frozen evaluation set and documented extension path — the same practices expected in a full-time engineering role.
+- Kept the required JSON report contract as the default output while adding an opt-in human-readable view (`--format text` / `report.to_text()`) rendered from the same report object, so the two formats cannot diverge.
 - Designed for failure rather than the happy path: bounded model retries/token budgets, template-safe prompt boundaries, untrusted Python isolated behind an opt-in subprocess, and content-addressed caching that invalidates when approvals change.
 
 ## One-line project description for the form
