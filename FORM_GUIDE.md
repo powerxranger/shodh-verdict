@@ -10,9 +10,9 @@ The hiring team clarified that the **same assessment** is used for both full-tim
 
 ## Submission checklist
 
-- [ ] Public GitHub repo: `shodh-verdict` (branch `master` @ `v1-final`; baseline preserved at `v0-baseline`).
+- [ ] Public GitHub repo: `shodh-verdict` (branch `master` @ `v1.3`; baseline preserved at `v0-baseline`).
 - [ ] `README.md` renders correctly on GitHub; docs and `EVALUATION.md` are visible.
-- [ ] Google Drive **2-minute video** link: Anyone with the link → **Viewer**.
+- [ ] Google Drive **2-minute introduction video** link: Anyone with the link → **Viewer**. The form asks for a video *about you, your achievements and why you want to join Shodh AI* — not a pure app demo. Use the script in `VIDEO_SCRIPT.md`; the project is your main achievement, but keep the focus on you.
 - [ ] Google Drive **resume** link: Anyone with the link → **Viewer**.
 - [ ] Open both links in an incognito window to confirm no access request.
 - [ ] Fill remaining form fields consistently with your resume.
@@ -36,3 +36,5 @@ git log --oneline --decorate --all
 ```
 
 If a recruiter asks to see the app work, the two `python -m verdict` commands above are enough: the first shows the required JSON report contract, the second shows the same engine's finding in plain English. Both are CLI runs — there is no frontend, and none was requested.
+
+**Note:** those commands are for the repo/interview, not for the intro video. The form's video field is specifically an introduction to you.

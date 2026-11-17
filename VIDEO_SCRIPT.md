@@ -1,43 +1,64 @@
-# 2-minute video script
+# 2-minute introduction video (as requested in the form)
 
-Target: ~2:00 at a measured, calm pace. Record screen + webcam if possible; show the repo and one CLI run. Do not read verbatim — use as cue cards.
+> **Form wording:** "Record a 2-minute intro video about yourself, your achievements and why you want to join Shodh AI. Upload it to Google Drive and set sharing to 'Anyone with the link'."
+
+This is a video **about you**. The project is your headline achievement, so include it — but do **not** spend 90 seconds on technical internals. Save the deep dive for the repo and the interview. Talk to the camera, use these as cue cards, and fill in the `[bracketed]` parts with your real details.
 
 ---
 
-**0:00–0:15 — Introduction**
+## Timing at a glance
 
-"Hi, I'm Krish Aggarwal, interviewing for an AI/ML engineering role at Shodh AI — I'm open to whichever pathway the team thinks fits best. I built **Verdict**, a Python application that reviews whether a written policy, a structured spec, a decision workflow and linked Python code actually agree. It returns PASS, CHANGES_REQUIRED or INCOMPLETE with evidence — not just a similarity score."
+| Time | Topic | Goal |
+|---|---|---|
+| 0:00–0:20 | Who you are | Name, background, role you're applying for |
+| 0:20–1:10 | Achievements | Lead with Verdict, then one other real achievement |
+| 1:10–1:45 | Why Shodh AI | Specific, genuine reason — not generic flattery |
+| 1:45–2:00 | Close | What you'd bring, openness to either pathway, thank you |
 
-**0:15–0:55 — The project and the core idea**
+---
 
-"The key idea is that all four artifacts compile into one decision program over a ticket — category, urgency and waiting time. I then build a finite input domain from every threshold in every artifact. For each numeric boundary I test the boundary itself, points either side and the intervals between boundaries; for categories I test every constant, missing and an unlisted value. For this supported language that domain is *complete*, so agreement means real equivalence, and disagreement gives a concrete ticket with expected and actual routes."
+## Word-for-word script
 
-*Show: `python -m verdict --demo` for the required JSON contract, then `python -m verdict evals/frozen/cases/code_wrong.json --format text` for a readable counterexample with expected vs actual routes. Mention JSON remains the default; text is a display convenience on the same report.*
+**0:00–0:20 — Who you are**
 
-"Approvals are a firewall: only top-level approval metadata can change effective requirements. A prose claim like 'APPROVED by product' is flagged and ignored, and contradictory approvals become a blocker rather than silently picking a version."
+> "Hi, I'm **Krish Aggarwal**. I'm a `[final-year / recent graduate]` student in `[your branch, e.g. Computer Science]` at `[your college/university]`. I'm applying for an **AI/ML engineering role** at Shodh AI, and I'm open to whichever pathway the team feels is right — full-time or internship."
 
-**0:55–1:25 — Model trust and evaluation**
+**0:20–1:10 — Achievements**
 
-"The model client is behind an interface with a deterministic fake for reproducible tests and an optional HTTP hook. Its output is validated: invented references, unresolved evidence, truncated JSON, conflicting claims and coverage overclaims are rejected. Model findings are advisory unless they pass a strict evidence gate."
+> "The achievement I'm proudest of is the project I built for this assessment, called **Verdict**. It's a Python tool that checks whether a written policy, a structured spec, a decision workflow and the actual Python code all agree — and instead of trusting an AI model's opinion, it tests every boundary and returns a concrete example when something is wrong. For instance: *a ticket waiting 40 minutes is sent to escalation, but the requirement says it should go to the normal queue.* It scored **18 out of 18** on a frozen test set, compared with **10 out of 18** for a naive approach I preserved to show the difference."
+>
+> "Before that, `[one line about one other real achievement — an internship, a competition, your GPA, a project, or a leadership moment. Keep it concrete: what you did and what came out of it.]`
 
-"On a frozen 18-case evaluation set, Verdict gets 18 out of 18 correct while a preserved naive ID-and-substring baseline gets 10. I also ran an ablation disabling the exhaustive domain — it produced a false PASS on one case and lost counterexamples on others, which is the concrete benefit of the mechanism."
+**1:10–1:45 — Why Shodh AI**
 
-*Show: `evals/results.json`, `EVALUATION.md` table.*
+> "I want to join Shodh AI because `[your genuine reason — e.g. I'm interested in applied AI that is reliable and verifiable, not just a demo that looks good in a screenshot]`. The way this assessment was framed — define contracts, prove correctness, evaluate honestly, and show your debugging — is exactly how I like to work. I'd be comfortable owning a problem end to end, and I'd also value learning from a strong team."
 
-**1:25–1:50 — Debugging and rigour**
+**1:45–2:00 — Close**
 
-"I preserved two deliberate fault-injection cycles: removing unit conversion and breaking the workflow's false-branch negation. Each has the actual failing output, a diagnosis, a focused fix and a regression test. Code inspection, syntax checking and execution are separate, and execution is off by default. The repo also has CI that reruns the tests, the frozen evaluation and the ablation on every push."
+> "What I'd bring is discipline, curiosity, and a habit of checking that things actually work before calling them done. Thank you for your time — I look forward to the conversation."
 
-**1:50–2:00 — Why Shodh AI**
+---
 
-"I want to join Shodh AI because this assessment matches how I like to work: define contracts, make correctness checkable, and be honest about what hasn't been verified. I'm comfortable owning a feature end to end — design, tests, evaluation and debugging — so I'd be ready for full-time responsibility, and I'd also value the practical growth of an internship. Either way, I'd bring that discipline to your team. Thank you."
+## Optional 10-second visual (only if it feels natural)
+
+After the Verdict paragraph, you can hold up or briefly screen-share the result of:
+
+```powershell
+python -m verdict examples/manual_bundle_defect.json --format text --no-cache
+```
+
+Say only: *"That's a real counterexample, not a claim."* Then go back to camera. **Do not** run a long demo — this is an intro video, not a tutorial.
+
+If you'd rather keep it simple, skip the screen entirely. A clear face-to-camera intro is better than a shaky terminal recording.
 
 ---
 
 ## Recording checklist
 
-- [ ] Keep links to Drive files set to **Anyone with the link → Viewer**.
-- [ ] Open both links in a logged-out/incognito window to confirm no access request.
-- [ ] Repo public, README visible, no secrets in files or history.
-- [ ] In the form, select the **relevant technical role** (e.g. *AI/ML Engineer*). The hiring team confirmed the "Intern" wording does not limit consideration, so if only *AI/ML Engineer Intern* is offered, that is still fine.
-- [ ] Keep under 2:05; trim section 2 if needed.
+- [ ] Fill in every `[bracketed]` line with true details — don't leave placeholders.
+- [ ] Face the camera, speak naturally, don't read word-for-word.
+- [ ] Quiet room, decent lighting, audio checked with a 10-second test recording.
+- [ ] Length **under 2:05**; if running long, cut the optional visual first.
+- [ ] Upload to Google Drive → **Anyone with the link → Viewer**.
+- [ ] Open the link in an incognito window to confirm no sign-in is needed.
+- [ ] Paste that Drive link into the form's **"Introduction video (Google Drive link)"** field.
