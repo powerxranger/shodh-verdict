@@ -19,7 +19,7 @@ from dataclasses import dataclass, field
 from fractions import Fraction
 from typing import Any, Iterable
 
-from .config import BASE_TIME_UNIT, FEATURE_CATEGORY, FEATURE_URGENT, FEATURE_WAITING
+from .config import FEATURE_CATEGORY, FEATURE_URGENT, FEATURE_WAITING
 from .models import Ticket
 from .programs import (
     DecisionProgram, Rule, eval_guard, eval_program, features_of,

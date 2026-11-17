@@ -1,0 +1,78 @@
+============================================================================
+VERDICT - REVIEW REPORT
+============================================================================
+  Status : CHANGES_REQUIRED
+  Summary: 1 evidenced blocker(s) across 3 finding(s).
+
+COVERAGE
+  Mode         : exhaustive
+  Partitions   : 45
+  Requirements : R1, R2, R3, R4
+  Artifacts    : requirements, spec, workflow, code:manual_routes.py
+  Unreviewed   : 0 item(s)
+  Scope: documented source patterns, structured guards, acyclic workflows, restricted
+         Python subset
+
+CHECK RESULTS
+  [PASS] source_coverage (exhaustive, 0 partitions) - 4 source requirements checked
+  [PASS] approval_reconciliation (exhaustive, 0 partitions) - 0 approval records checked
+  [PASS] equivalence:spec (exhaustive, 45 partitions) - 0 mismatching partitions of 45
+  [FAIL] equivalence:workflow (exhaustive, 45 partitions) - 8 mismatching partitions of 45
+  [PASS] equivalence:code:manual_routes.py (exhaustive, 45 partitions) - 0 mismatching partitions of 45
+
+MODEL PROVENANCE
+  Client       : fake/valid_clean
+  Real model   : no (synthetic)
+  Attempts     : 1    Tokens: 444
+  Response SHA : 35cc6542396ccc36...
+
+FINDINGS (3)
+  1. [BLOCKER] CHANGED_THRESHOLD (origin: deterministic)
+     Where   : workflow@w1:compiled decision paths
+     Message: workflow routes ticket(category='unlisted_category_value', urgent=False,
+              waiting_minutes=40.0) expected=normal_queue actual=escalation; expected
+              'normal_queue'.
+     Fix: Align workflow with the effective requirement so the ticket routes to
+          'normal_queue' instead of 'escalation'.
+     Evidence: d.ticket.category='unlisted_category_value'
+     Evidence: d.ticket.urgent=False
+     Evidence: d.ticket.waiting_minutes=40.0
+     Evidence: observed rule: workflow-path
+     Evidence: 1/45 partitions disagree
+     Counterexample:
+       expected route: normal_queue
+       actual route  : escalation
+       category='unlisted_category_value', urgent=False, waiting_minutes=40.0
+
+  2. [MAJOR] SCRIPT_DISAGREEMENT (origin: deterministic)
+     Where   : workflow@w1:compiled decision paths
+     Message: spec and workflow disagree on a concrete ticket: normal_queue vs
+              escalation.
+     Fix: Reconcile spec and workflow; both must match the effective requirements.
+     Evidence: spec=normal_queue
+     Evidence: workflow=escalation
+     Evidence: {"category":"unlisted_category_value","urgent":false,"waiting_minutes":40
+               .0,"extra":{}}
+     Counterexample:
+       expected route: normal_queue
+       actual route  : escalation
+       category='unlisted_category_value', urgent=False, waiting_minutes=40.0
+
+  3. [MAJOR] SCRIPT_DISAGREEMENT (origin: deterministic)
+     Where   : code:manual_routes.py@c1:compiled decision paths
+     Message: workflow and code:manual_routes.py disagree on a concrete ticket:
+              escalation vs normal_queue.
+     Fix: Reconcile workflow and code:manual_routes.py; both must match the effective
+          requirements.
+     Evidence: workflow=escalation
+     Evidence: code:manual_routes.py=normal_queue
+     Evidence: {"category":"unlisted_category_value","urgent":false,"waiting_minutes":40
+               .0,"extra":{}}
+     Counterexample:
+       expected route: escalation
+       actual route  : normal_queue
+       category='unlisted_category_value', urgent=False, waiting_minutes=40.0
+
+============================================================================
+RESULT: CHANGES_REQUIRED
+============================================================================

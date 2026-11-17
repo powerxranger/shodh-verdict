@@ -8,7 +8,7 @@ from pathlib import Path
 from . import cache
 from .config import ReviewConfig
 from .models import Bundle, ReviewReport
-from .model_client import ModelRequest, build_prompt, make_client
+from .model_client import SYSTEM_PROMPT, ModelRequest, make_client
 from .review import ReviewContext, build_report, run_deterministic_review
 from .validation import validate_model_response
 
@@ -36,7 +36,7 @@ def review_bundle(bundle: Bundle, config: ReviewConfig | None = None,
     ctx: ReviewContext = run_deterministic_review(bundle, config)
 
     request = ModelRequest(
-        system=build_prompt.__doc__ or "",
+        system=SYSTEM_PROMPT,
         prompt=_untrusted_payload(bundle),
         config=config,
         known_refs=sorted(ctx.known_refs),

@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 
 from .config import canonical_route, ROUTE_UNKNOWN
 from .models import PythonSnippet
-from .programs import AND, NOT, OR, Guard, cmp, from_model
+from .programs import AND, NOT, OR, TRUE, Guard, cmp, from_model
 from .models import GuardModel, ComparisonModel
 
 ALLOWED_COMPARE = {
@@ -123,8 +123,7 @@ def inspect_snippet(snippet: PythonSnippet, feature_units: dict[str, str] | None
 
     rules: list[tuple[Guard, str]] = []
     try:
-        rules = _walk_block(func.body, __import__("verdict.programs", fromlist=["TRUE"]).TRUE,
-                           feature_units or {}, result.unsupported)
+        rules = _walk_block(func.body, TRUE, feature_units or {}, result.unsupported)
         from .programs import DecisionProgram, Rule
         frozen = tuple(
             Rule(g, r, f"code:{snippet.path}:{snippet.function}:rule{i}", snippet.source_ref)
