@@ -3,21 +3,21 @@
   "note": "All artifacts are synthetic and generated from scripts/make_demo.py.",
   "cases": {
     "pass": {
-      "sha256": "3933303721e082218fb005120cd1a94332e5ede6573e4de053f6e12fc972b2c4",
+      "sha256": "010be54f2f170cc914ec5f2ddba086d9ffc4b83d00b089c55a09cca001dd957e",
       "expected_status": "PASS",
       "expected_finding_kinds": [],
       "config": {},
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "approved_25_pass": {
-      "sha256": "d52e0eff7da6b1732ece90393c6f2765cb312c4e29e85bb8dea41ec7d5b48103",
+      "sha256": "067fa8b9715a266747bc4be21a1a6c6baa5b1f84a41f6664b9998d55dd7d68f8",
       "expected_status": "PASS",
       "expected_finding_kinds": [],
       "config": {},
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "approved_25_ignored": {
-      "sha256": "4027705ba4f2628130670bd63037fdac7af0d03140393bfefcccaefce8c80c8e",
+      "sha256": "8fbc841870be33d33b05a30fc40fba9d17efc55ca270880c707b71102f6df792",
       "expected_status": "CHANGES_REQUIRED",
       "expected_finding_kinds": [
         "CHANGED_THRESHOLD"
@@ -26,7 +26,7 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "unapproved_25_applied": {
-      "sha256": "8a7e050ed7d80d8d4748a545405ad33057a244519f37800e166edb4c08927bac",
+      "sha256": "f7b6e831cbd680737af1d941e5e03f56a6fde94a9bd31e579fa42358f5c9d33f",
       "expected_status": "CHANGES_REQUIRED",
       "expected_finding_kinds": [
         "CHANGED_THRESHOLD"
@@ -35,7 +35,7 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "contradictory_approval": {
-      "sha256": "a581512c2730b6acc6044accc93ed6ef4dfc28d05d1d5d834e1198ecf49a2514",
+      "sha256": "88472439c9f920239dfca2c2c2ce4ff625cef4f5b9fa7e9473f5775371971d0f",
       "expected_status": "CHANGES_REQUIRED",
       "expected_finding_kinds": [
         "CONTRADICTORY_APPROVALS"
@@ -44,7 +44,7 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "omitted_requirement": {
-      "sha256": "3cac8214e146ff5e01b44592a0cbfd50dc42bb688a4dc708d65e14761e3ccba8",
+      "sha256": "43d13f44a3a667057ddeca0964df3652d806d00c5b9aa2ef5d30d1fa9459a7c4",
       "expected_status": "CHANGES_REQUIRED",
       "expected_finding_kinds": [
         "OMITTED_REQUIREMENT"
@@ -53,7 +53,7 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "precedence_swapped": {
-      "sha256": "267f4d5696308a33aad1827c3a1782cc79f54057d0ed4b238d95c3d70120d5d2",
+      "sha256": "5752181fc3d700a87d773ecd6e1babc2ada63729d3cc1d0106549a93428d4762",
       "expected_status": "CHANGES_REQUIRED",
       "expected_finding_kinds": [
         "INCORRECT_PRECEDENCE"
@@ -62,7 +62,7 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "missing_branch": {
-      "sha256": "4a3f8f12d10005595f819f8ffca3d286cf20bb525564bc7ff236cdd70fb46925",
+      "sha256": "7a59124212c1e036360c7f5795c4927a91eae77fc58268020002bd54806238cb",
       "expected_status": "CHANGES_REQUIRED",
       "expected_finding_kinds": [
         "MISSING_BRANCH"
@@ -71,7 +71,7 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "code_wrong": {
-      "sha256": "27e2a01dfdc2ad3de84feeb6ee4f2ecb1ea27db10affcf686107c4b67ae385fc",
+      "sha256": "d75f5cb6c43e1feb23d1e5f51f4b3f2c9088c4f80ebeb6b1764e082a8646ba6f",
       "expected_status": "CHANGES_REQUIRED",
       "expected_finding_kinds": [
         "SCRIPT_DISAGREEMENT"
@@ -80,7 +80,7 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "unsupported_source": {
-      "sha256": "5e25289e039b4a0a7159600996a075884c8f4ac36152b035f205685492cfc38d",
+      "sha256": "703ed08948321f79d844605db089e04c96dc4f731812ac31d2c6770d15266690",
       "expected_status": "INCOMPLETE",
       "expected_finding_kinds": [
         "UNSUPPORTED_SOURCE_PATTERN"
@@ -89,7 +89,7 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "injection_prose": {
-      "sha256": "bd4eeb542f9f4b802b082dd27c70d665b5fcec7386f342b69ddab8b330a33af3",
+      "sha256": "9ed44749b442d7b649cc6539ba7d9b7afb5440ac142abbd3b735f55ce457bef9",
       "expected_status": "PASS",
       "expected_finding_kinds": [
         "UNAUTHORIZED_APPROVAL_CLAIM"
@@ -98,14 +98,14 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "overlap_exceptions": {
-      "sha256": "816008f76e90ad19edb57124e3f2eaa27886ec36e8be817ec054b185e0f4f01f",
+      "sha256": "0d08a424f6c37b2c991e3b5572177df2a0499ca5d7ba959e51abbef9786aa25c",
       "expected_status": "PASS",
       "expected_finding_kinds": [],
       "config": {},
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "unit_mismatch": {
-      "sha256": "d6a78908062017d35d6adf6d18a979d914d49a507def6c11fc3486eaea8a2c61",
+      "sha256": "32926b20a603af63df8fc4f7e760d36d0dd849f618b0341d818c1f81f7089b83",
       "expected_status": "CHANGES_REQUIRED",
       "expected_finding_kinds": [
         "UNIT_MISMATCH"
@@ -114,14 +114,14 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "hours_equivalent": {
-      "sha256": "f3656ff28c105f3fe809cef94758a73c268e2e23e3935d43e0c7de6fa7c46097",
+      "sha256": "e690165f1ffdf5adf6ca9f802cf25ff1378698977309cc31b8936b6a4628075d",
       "expected_status": "PASS",
       "expected_finding_kinds": [],
       "config": {},
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "model_truncated": {
-      "sha256": "1dec0349369837041e4a4ec8a19f714260f4f87ced2281d13649e26dab7a78b8",
+      "sha256": "29ecedc1b51230b2d677efe9189644f490d8cd1c6d9955820c038d4063183e6c",
       "expected_status": "INCOMPLETE",
       "expected_finding_kinds": [
         "MODEL_JSON_INVALID"
@@ -133,7 +133,7 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "model_invented_ref": {
-      "sha256": "57a182fbbc4b4bd43ff5aae4a234d9299a577685b42e42b06a742ecab182bd1d",
+      "sha256": "505a8493e908974c51d181b9c2ac097083313a3d9528ce79c74d1b9db32b3780",
       "expected_status": "PASS",
       "expected_finding_kinds": [
         "INVENTED_REFERENCE"
@@ -144,7 +144,7 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "model_conflicting": {
-      "sha256": "aa31e4ab750f9fa30bd76d5b4894b5585d9657666a86ab78e5c80045f11c3405",
+      "sha256": "5ee3877ee64d9400840dab85d52675c1e3aae456a977e70cdbd724b80ae4d99e",
       "expected_status": "PASS",
       "expected_finding_kinds": [
         "CONFLICTING_MODEL_CLAIMS"
@@ -155,7 +155,7 @@
       "description": "Four-rule support routing policy with ordered precedence."
     },
     "model_valid_finding": {
-      "sha256": "94970d00beea7a63e9722004609c1b8edf6441fe3e251b0a8a9bef62c26c7f85",
+      "sha256": "d903a30d1500eef109dc386572e15e0feecf9d814e5719b044fba2480d442fe9",
       "expected_status": "PASS",
       "expected_finding_kinds": [
         "SEMANTIC_NUANCE"

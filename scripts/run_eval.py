@@ -22,6 +22,11 @@ MANIFEST = ROOT / "evals" / "frozen" / "manifest.json"
 RESULTS = ROOT / "evals" / "results.json"
 
 
+def _canonical_bytes(path: Path) -> bytes:
+    """Hash text bytes independently of Windows CRLF vs Unix LF checkouts."""
+    return path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+
+
 def freeze_cases() -> dict:
     CASES_DIR.mkdir(parents=True, exist_ok=True)
     entries = {}
@@ -29,9 +34,9 @@ def freeze_cases() -> dict:
         bundle = make_bundle(case_id)
         payload = json.loads(bundle.model_dump_json())
         path = CASES_DIR / f"{case_id}.json"
-        path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
+        path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8", newline="\n")
         entries[case_id] = {
-            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            "sha256": hashlib.sha256(_canonical_bytes(path)).hexdigest(),
             "expected_status": bundle.expected_status,
             "expected_finding_kinds": bundle.expected_finding_kinds,
             "config": bundle.config,
@@ -41,7 +46,7 @@ def freeze_cases() -> dict:
         "frozen_set_version": "1.0",
         "note": "All artifacts are synthetic and generated from scripts/make_demo.py.",
         "cases": entries,
-    }, indent=2), encoding="utf-8")
+    }, indent=2), encoding="utf-8", newline="\n")
     return entries
 
 
@@ -51,7 +56,7 @@ def verify_freeze(manifest: dict) -> list[str]:
         path = CASES_DIR / f"{case_id}.json"
         if not path.exists():
             problems.append(f"{case_id}: missing file")
-        elif hashlib.sha256(path.read_bytes()).hexdigest() != meta["sha256"]:
+        elif hashlib.sha256(_canonical_bytes(path)).hexdigest() != meta["sha256"]:
             problems.append(f"{case_id}: hash mismatch")
     return problems
 
