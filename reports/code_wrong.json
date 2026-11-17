@@ -1,0 +1,161 @@
+{
+  "status": "CHANGES_REQUIRED",
+  "summary": "1 evidenced blocker(s) across 3 finding(s).",
+  "findings": [
+    {
+      "id": "SEMANTIC_MISMATCH:code:routes.py:INCORRECT_PRECEDENCE:escalation->normal_queue",
+      "severity": "blocker",
+      "kind": "INCORRECT_PRECEDENCE",
+      "rule_ref": "requirement:REQ-3",
+      "artifact": "code:routes.py",
+      "version": "c5",
+      "location": "compiled decision paths",
+      "evidence": [
+        "d.ticket.category='general_inquiry'",
+        "d.ticket.urgent=False",
+        "d.ticket.waiting_minutes=30.0",
+        "expected rule: requirement:REQ-3",
+        "observed rule: code:routes.py:route_ticket:rule2",
+        "1/27 partitions disagree"
+      ],
+      "message": "code:routes.py routes ticket(category='general_inquiry', urgent=False, waiting_minutes=30.0) expected=escalation actual=normal_queue; expected 'escalation'.",
+      "correction": "Align code:routes.py with the effective requirement so the ticket routes to 'escalation' instead of 'normal_queue'.",
+      "expected_route": "escalation",
+      "actual_route": "normal_queue",
+      "counterexample": {
+        "category": "general_inquiry",
+        "urgent": false,
+        "waiting_minutes": 30.0,
+        "extra": {}
+      },
+      "origin": "deterministic"
+    },
+    {
+      "id": "CROSS_ARTIFACT_DRIFT:spec:code:routes.py",
+      "severity": "major",
+      "kind": "SCRIPT_DISAGREEMENT",
+      "rule_ref": null,
+      "artifact": "code:routes.py",
+      "version": "c5",
+      "location": "compiled decision paths",
+      "evidence": [
+        "spec=escalation",
+        "code:routes.py=normal_queue",
+        "{\"category\":\"general_inquiry\",\"urgent\":false,\"waiting_minutes\":30.0,\"extra\":{}}"
+      ],
+      "message": "spec and code:routes.py disagree on a concrete ticket: escalation vs normal_queue.",
+      "correction": "Reconcile spec and code:routes.py; both must match the effective requirements.",
+      "expected_route": "escalation",
+      "actual_route": "normal_queue",
+      "counterexample": {
+        "category": "general_inquiry",
+        "urgent": false,
+        "waiting_minutes": 30.0,
+        "extra": {}
+      },
+      "origin": "deterministic"
+    },
+    {
+      "id": "CROSS_ARTIFACT_DRIFT:workflow:code:routes.py",
+      "severity": "major",
+      "kind": "SCRIPT_DISAGREEMENT",
+      "rule_ref": null,
+      "artifact": "code:routes.py",
+      "version": "c5",
+      "location": "compiled decision paths",
+      "evidence": [
+        "workflow=escalation",
+        "code:routes.py=normal_queue",
+        "{\"category\":\"general_inquiry\",\"urgent\":false,\"waiting_minutes\":30.0,\"extra\":{}}"
+      ],
+      "message": "workflow and code:routes.py disagree on a concrete ticket: escalation vs normal_queue.",
+      "correction": "Reconcile workflow and code:routes.py; both must match the effective requirements.",
+      "expected_route": "escalation",
+      "actual_route": "normal_queue",
+      "counterexample": {
+        "category": "general_inquiry",
+        "urgent": false,
+        "waiting_minutes": 30.0,
+        "extra": {}
+      },
+      "origin": "deterministic"
+    }
+  ],
+  "coverage": {
+    "mode": "exhaustive",
+    "supported_scope": "documented source patterns, structured guards, acyclic workflows, restricted Python subset",
+    "reviewed_requirements": [
+      "R1",
+      "R2",
+      "R3",
+      "R4"
+    ],
+    "unreviewed": [],
+    "partitions_tested": 27,
+    "artifacts_reviewed": [
+      "requirements",
+      "spec",
+      "workflow",
+      "code:routes.py"
+    ]
+  },
+  "check_results": [
+    {
+      "name": "source_coverage",
+      "passed": true,
+      "exhaustive": true,
+      "partitions": 0,
+      "detail": "4 source requirements checked"
+    },
+    {
+      "name": "approval_reconciliation",
+      "passed": true,
+      "exhaustive": true,
+      "partitions": 0,
+      "detail": "0 approval records checked"
+    },
+    {
+      "name": "equivalence:spec",
+      "passed": true,
+      "exhaustive": true,
+      "partitions": 27,
+      "detail": "0 mismatching partitions of 27"
+    },
+    {
+      "name": "equivalence:workflow",
+      "passed": true,
+      "exhaustive": true,
+      "partitions": 27,
+      "detail": "0 mismatching partitions of 27"
+    },
+    {
+      "name": "equivalence:code:routes.py",
+      "passed": false,
+      "exhaustive": true,
+      "partitions": 27,
+      "detail": "8 mismatching partitions of 27"
+    }
+  ],
+  "model": {
+    "client": "fake",
+    "scenario": "valid_clean",
+    "request_config": {
+      "prompt_sha256": "c8d237ac6f634367",
+      "max_retries": 2,
+      "max_tokens": 4000
+    },
+    "response_sha256": "35cc6542396ccc36e5bdcdf97320a03b7b78a856ae7af2ddcbfca150ae50e513",
+    "attempts": 1,
+    "tokens_used": 432,
+    "failures": [],
+    "real_model": false
+  },
+  "content_hashes": {
+    "requirements": "130cea57534b4a618622e24d6649519317f035918436d8caf6cd3f16a11eebc7",
+    "spec": "a8b4461e22fb510cb203bfda246be4a502d7c8418bb749c57bf30fddfcae8d51",
+    "workflow": "b15d2db88c0b5a0c4c3193139cdfa1af8e0043a9d2109f1ec6d003025dd23402",
+    "snippets": "43f49b3959296f4eb47f7860e396d3978b819b1679a63b4a7e3625fb44eecf67",
+    "approvals": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "config_signature": "enable_ablation=False|execute_code=False|max_input_chars=200000|max_model_retries=2|max_model_tokens=4000|model_required=False|model_scenario=valid_clean"
+}

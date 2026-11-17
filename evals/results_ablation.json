@@ -1,0 +1,304 @@
+{
+  "frozen_set_version": "1.0",
+  "ablation": true,
+  "total": 18,
+  "final_correct": 15,
+  "baseline_correct": 10,
+  "rows": [
+    {
+      "case": "pass",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [],
+      "final_status": "PASS",
+      "final_finding_kinds": [],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": true,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "approved_25_pass",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [],
+      "final_status": "PASS",
+      "final_finding_kinds": [],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": true,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "approved_25_ignored",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "CHANGED_THRESHOLD"
+      ],
+      "final_status": "CHANGES_REQUIRED",
+      "final_finding_kinds": [
+        "CHANGED_THRESHOLD"
+      ],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": false,
+      "partitions": 45,
+      "coverage_mode": "sampled",
+      "counterexamples": 3
+    },
+    {
+      "case": "unapproved_25_applied",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "CHANGED_THRESHOLD"
+      ],
+      "final_status": "CHANGES_REQUIRED",
+      "final_finding_kinds": [
+        "CHANGED_THRESHOLD",
+        "UNAPPROVED_SUGGESTION",
+        "UNIT_MISMATCH"
+      ],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": false,
+      "partitions": 45,
+      "coverage_mode": "sampled",
+      "counterexamples": 3
+    },
+    {
+      "case": "contradictory_approval",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "CONTRADICTORY_APPROVALS"
+      ],
+      "final_status": "CHANGES_REQUIRED",
+      "final_finding_kinds": [
+        "CHANGED_THRESHOLD",
+        "CONTRADICTORY_APPROVALS"
+      ],
+      "final_correct": true,
+      "baseline_status": "CHANGES_REQUIRED",
+      "baseline_correct": true,
+      "partitions": 45,
+      "coverage_mode": "sampled",
+      "counterexamples": 3
+    },
+    {
+      "case": "omitted_requirement",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "OMITTED_REQUIREMENT"
+      ],
+      "final_status": "CHANGES_REQUIRED",
+      "final_finding_kinds": [
+        "OMITTED_REQUIREMENT"
+      ],
+      "final_correct": true,
+      "baseline_status": "CHANGES_REQUIRED",
+      "baseline_correct": true,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "precedence_swapped",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "INCORRECT_PRECEDENCE"
+      ],
+      "final_status": "CHANGES_REQUIRED",
+      "final_finding_kinds": [
+        "CHANGED_THRESHOLD",
+        "SCRIPT_DISAGREEMENT"
+      ],
+      "final_correct": false,
+      "baseline_status": "PASS",
+      "baseline_correct": false,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 4
+    },
+    {
+      "case": "missing_branch",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "MISSING_BRANCH"
+      ],
+      "final_status": "CHANGES_REQUIRED",
+      "final_finding_kinds": [
+        "MISSING_BRANCH"
+      ],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": false,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "code_wrong",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "SCRIPT_DISAGREEMENT"
+      ],
+      "final_status": "PASS",
+      "final_finding_kinds": [],
+      "final_correct": false,
+      "baseline_status": "PASS",
+      "baseline_correct": false,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "unsupported_source",
+      "expected_status": "INCOMPLETE",
+      "expected_finding_kinds": [
+        "UNSUPPORTED_SOURCE_PATTERN"
+      ],
+      "final_status": "INCOMPLETE",
+      "final_finding_kinds": [
+        "UNSUPPORTED_SOURCE_PATTERN"
+      ],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": false,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "injection_prose",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [
+        "UNAUTHORIZED_APPROVAL_CLAIM"
+      ],
+      "final_status": "PASS",
+      "final_finding_kinds": [
+        "UNAUTHORIZED_APPROVAL_CLAIM"
+      ],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": true,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "overlap_exceptions",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [],
+      "final_status": "PASS",
+      "final_finding_kinds": [],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": true,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "unit_mismatch",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "UNIT_MISMATCH"
+      ],
+      "final_status": "CHANGES_REQUIRED",
+      "final_finding_kinds": [
+        "CHANGED_THRESHOLD",
+        "SCRIPT_DISAGREEMENT"
+      ],
+      "final_correct": false,
+      "baseline_status": "PASS",
+      "baseline_correct": false,
+      "partitions": 45,
+      "coverage_mode": "sampled",
+      "counterexamples": 3
+    },
+    {
+      "case": "hours_equivalent",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [],
+      "final_status": "PASS",
+      "final_finding_kinds": [],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": true,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "model_truncated",
+      "expected_status": "INCOMPLETE",
+      "expected_finding_kinds": [
+        "MODEL_JSON_INVALID"
+      ],
+      "final_status": "INCOMPLETE",
+      "final_finding_kinds": [
+        "MODEL_JSON_INVALID"
+      ],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": false,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "model_invented_ref",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [
+        "INVENTED_REFERENCE"
+      ],
+      "final_status": "PASS",
+      "final_finding_kinds": [
+        "COVERAGE_OVERCLAIM",
+        "INVENTED_REFERENCE"
+      ],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": true,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "model_conflicting",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [
+        "CONFLICTING_MODEL_CLAIMS"
+      ],
+      "final_status": "PASS",
+      "final_finding_kinds": [
+        "CONFLICTING_MODEL_CLAIMS",
+        "COVERAGE_OVERCLAIM"
+      ],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": true,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    },
+    {
+      "case": "model_valid_finding",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [
+        "SEMANTIC_NUANCE"
+      ],
+      "final_status": "PASS",
+      "final_finding_kinds": [
+        "SEMANTIC_NUANCE"
+      ],
+      "final_correct": true,
+      "baseline_status": "PASS",
+      "baseline_correct": true,
+      "partitions": 27,
+      "coverage_mode": "sampled",
+      "counterexamples": 0
+    }
+  ]
+}

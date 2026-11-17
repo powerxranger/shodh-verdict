@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "summary": "All effective requirements reviewed exhaustively over 27 representative inputs with no blocker.",
+  "findings": [],
+  "coverage": {
+    "mode": "exhaustive",
+    "supported_scope": "documented source patterns, structured guards, acyclic workflows, restricted Python subset",
+    "reviewed_requirements": [
+      "R1",
+      "R2",
+      "R3",
+      "R4"
+    ],
+    "unreviewed": [],
+    "partitions_tested": 27,
+    "artifacts_reviewed": [
+      "requirements",
+      "spec",
+      "workflow",
+      "code:routes.py"
+    ]
+  },
+  "check_results": [
+    {
+      "name": "source_coverage",
+      "passed": true,
+      "exhaustive": true,
+      "partitions": 0,
+      "detail": "4 source requirements checked"
+    },
+    {
+      "name": "approval_reconciliation",
+      "passed": true,
+      "exhaustive": true,
+      "partitions": 0,
+      "detail": "0 approval records checked"
+    },
+    {
+      "name": "equivalence:spec",
+      "passed": true,
+      "exhaustive": true,
+      "partitions": 27,
+      "detail": "0 mismatching partitions of 27"
+    },
+    {
+      "name": "equivalence:workflow",
+      "passed": true,
+      "exhaustive": true,
+      "partitions": 27,
+      "detail": "0 mismatching partitions of 27"
+    },
+    {
+      "name": "equivalence:code:routes.py",
+      "passed": true,
+      "exhaustive": true,
+      "partitions": 27,
+      "detail": "0 mismatching partitions of 27"
+    }
+  ],
+  "model": {
+    "client": "fake",
+    "scenario": "valid_clean",
+    "request_config": {
+      "prompt_sha256": "968c47f405cecdcd",
+      "max_retries": 2,
+      "max_tokens": 4000
+    },
+    "response_sha256": "35cc6542396ccc36e5bdcdf97320a03b7b78a856ae7af2ddcbfca150ae50e513",
+    "attempts": 1,
+    "tokens_used": 432,
+    "failures": [],
+    "real_model": false
+  },
+  "content_hashes": {
+    "requirements": "da5992548acec18f071a6f7a24064b0d14536957bbe10490bfda1c95bb2e7cb3",
+    "spec": "a8b4461e22fb510cb203bfda246be4a502d7c8418bb749c57bf30fddfcae8d51",
+    "workflow": "b15d2db88c0b5a0c4c3193139cdfa1af8e0043a9d2109f1ec6d003025dd23402",
+    "snippets": "8d108e8d25c5295bb9acbcd919cb784f3ea40d788e4265250a60068899375874",
+    "approvals": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "config_signature": "enable_ablation=False|execute_code=False|max_input_chars=200000|max_model_retries=2|max_model_tokens=4000|model_required=False|model_scenario=valid_clean"
+}

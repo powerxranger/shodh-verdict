@@ -1,0 +1,243 @@
+{
+  "approvals": [],
+  "config": {
+    "model_required": true,
+    "model_scenario": "truncated"
+  },
+  "description": "Four-rule support routing policy with ordered precedence.",
+  "expected_finding_kinds": [
+    "MODEL_JSON_INVALID"
+  ],
+  "expected_status": "INCOMPLETE",
+  "id": "model_truncated",
+  "model_scenario": "valid_clean",
+  "requirements": [
+    {
+      "doc": "policy.md",
+      "id": "REQ-1",
+      "location": "p1:L3",
+      "parseable": true,
+      "priority": 1,
+      "rule_ref": "R1",
+      "text": "missing category -> manual review",
+      "version": "v2"
+    },
+    {
+      "doc": "policy.md",
+      "id": "REQ-2",
+      "location": "p1:L4",
+      "parseable": true,
+      "priority": 2,
+      "rule_ref": "R2",
+      "text": "urgent ticket -> priority queue",
+      "version": "v2"
+    },
+    {
+      "doc": "policy.md",
+      "id": "REQ-3",
+      "location": "p1:L5",
+      "parseable": true,
+      "priority": 3,
+      "rule_ref": "R3",
+      "text": "waiting >= 30 minutes -> escalation",
+      "version": "v2"
+    },
+    {
+      "doc": "policy.md",
+      "id": "REQ-4",
+      "location": "p1:L6",
+      "parseable": true,
+      "priority": 4,
+      "rule_ref": "R4",
+      "text": "otherwise -> normal queue",
+      "version": "v2"
+    }
+  ],
+  "snippets": [
+    {
+      "artifact_id": "code",
+      "code": "def route_ticket(category, urgent, waiting_minutes):\n    if category is None:\n        return 'manual_review'\n    elif urgent:\n        return 'priority_queue'\n    elif waiting_minutes >= 30:\n        return 'escalation'\n    else:\n        return 'normal_queue'\n",
+      "function": "route_ticket",
+      "location": "routes.py:L1-8",
+      "path": "routes.py",
+      "source_ref": "R1,R2,R3",
+      "version": "c5"
+    }
+  ],
+  "spec": {
+    "artifact_id": "spec",
+    "default_route": "normal_queue",
+    "feature_units": {
+      "waiting_minutes": "minutes"
+    },
+    "rejected_suggestions": [],
+    "rules": [
+      {
+        "exceptions": [],
+        "guard": {
+          "children": [],
+          "comparison": {
+            "feature": "category",
+            "op": "==",
+            "unit": null,
+            "value": null
+          },
+          "kind": "cmp"
+        },
+        "id": "S1",
+        "notes": null,
+        "priority": 1,
+        "route": "manual_review",
+        "source_ref": "R1"
+      },
+      {
+        "exceptions": [],
+        "guard": {
+          "children": [],
+          "comparison": {
+            "feature": "urgent",
+            "op": "==",
+            "unit": null,
+            "value": true
+          },
+          "kind": "cmp"
+        },
+        "id": "S2",
+        "notes": null,
+        "priority": 2,
+        "route": "priority_queue",
+        "source_ref": "R2"
+      },
+      {
+        "exceptions": [],
+        "guard": {
+          "children": [],
+          "comparison": {
+            "feature": "waiting_minutes",
+            "op": ">=",
+            "unit": "minutes",
+            "value": 30
+          },
+          "kind": "cmp"
+        },
+        "id": "S3",
+        "notes": null,
+        "priority": 3,
+        "route": "escalation",
+        "source_ref": "R3"
+      }
+    ],
+    "version": "s3"
+  },
+  "workflow": {
+    "artifact_id": "workflow",
+    "nodes": [
+      {
+        "condition": {
+          "children": [],
+          "comparison": {
+            "feature": "category",
+            "op": "==",
+            "unit": null,
+            "value": null
+          },
+          "kind": "cmp"
+        },
+        "destination": null,
+        "false_next": "n3",
+        "id": "n1",
+        "kind": "decision",
+        "location": "flow:n1",
+        "source_ref": "R1",
+        "true_next": "n2",
+        "version": "1"
+      },
+      {
+        "condition": null,
+        "destination": "manual_review",
+        "false_next": null,
+        "id": "n2",
+        "kind": "terminal",
+        "location": "flow:n2",
+        "source_ref": null,
+        "true_next": null,
+        "version": "1"
+      },
+      {
+        "condition": {
+          "children": [],
+          "comparison": {
+            "feature": "urgent",
+            "op": "==",
+            "unit": null,
+            "value": true
+          },
+          "kind": "cmp"
+        },
+        "destination": null,
+        "false_next": "n5",
+        "id": "n3",
+        "kind": "decision",
+        "location": "flow:n3",
+        "source_ref": "R2",
+        "true_next": "n4",
+        "version": "1"
+      },
+      {
+        "condition": null,
+        "destination": "priority_queue",
+        "false_next": null,
+        "id": "n4",
+        "kind": "terminal",
+        "location": "flow:n4",
+        "source_ref": null,
+        "true_next": null,
+        "version": "1"
+      },
+      {
+        "condition": {
+          "children": [],
+          "comparison": {
+            "feature": "waiting_minutes",
+            "op": ">=",
+            "unit": "minutes",
+            "value": 30
+          },
+          "kind": "cmp"
+        },
+        "destination": null,
+        "false_next": "n7",
+        "id": "n5",
+        "kind": "decision",
+        "location": "flow:n5",
+        "source_ref": "R3",
+        "true_next": "n6",
+        "version": "1"
+      },
+      {
+        "condition": null,
+        "destination": "escalation",
+        "false_next": null,
+        "id": "n6",
+        "kind": "terminal",
+        "location": "flow:n6",
+        "source_ref": null,
+        "true_next": null,
+        "version": "1"
+      },
+      {
+        "condition": null,
+        "destination": "normal_queue",
+        "false_next": null,
+        "id": "n7",
+        "kind": "terminal",
+        "location": "flow:n7",
+        "source_ref": null,
+        "true_next": null,
+        "version": "1"
+      }
+    ],
+    "start": "n1",
+    "version": "w4"
+  }
+}

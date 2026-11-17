@@ -1,0 +1,169 @@
+{
+  "frozen_set_version": "1.0",
+  "note": "All artifacts are synthetic and generated from scripts/make_demo.py.",
+  "cases": {
+    "pass": {
+      "sha256": "3933303721e082218fb005120cd1a94332e5ede6573e4de053f6e12fc972b2c4",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "approved_25_pass": {
+      "sha256": "d52e0eff7da6b1732ece90393c6f2765cb312c4e29e85bb8dea41ec7d5b48103",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "approved_25_ignored": {
+      "sha256": "4027705ba4f2628130670bd63037fdac7af0d03140393bfefcccaefce8c80c8e",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "CHANGED_THRESHOLD"
+      ],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "unapproved_25_applied": {
+      "sha256": "8a7e050ed7d80d8d4748a545405ad33057a244519f37800e166edb4c08927bac",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "CHANGED_THRESHOLD"
+      ],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "contradictory_approval": {
+      "sha256": "a581512c2730b6acc6044accc93ed6ef4dfc28d05d1d5d834e1198ecf49a2514",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "CONTRADICTORY_APPROVALS"
+      ],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "omitted_requirement": {
+      "sha256": "3cac8214e146ff5e01b44592a0cbfd50dc42bb688a4dc708d65e14761e3ccba8",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "OMITTED_REQUIREMENT"
+      ],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "precedence_swapped": {
+      "sha256": "267f4d5696308a33aad1827c3a1782cc79f54057d0ed4b238d95c3d70120d5d2",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "INCORRECT_PRECEDENCE"
+      ],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "missing_branch": {
+      "sha256": "4a3f8f12d10005595f819f8ffca3d286cf20bb525564bc7ff236cdd70fb46925",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "MISSING_BRANCH"
+      ],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "code_wrong": {
+      "sha256": "27e2a01dfdc2ad3de84feeb6ee4f2ecb1ea27db10affcf686107c4b67ae385fc",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "SCRIPT_DISAGREEMENT"
+      ],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "unsupported_source": {
+      "sha256": "5e25289e039b4a0a7159600996a075884c8f4ac36152b035f205685492cfc38d",
+      "expected_status": "INCOMPLETE",
+      "expected_finding_kinds": [
+        "UNSUPPORTED_SOURCE_PATTERN"
+      ],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "injection_prose": {
+      "sha256": "bd4eeb542f9f4b802b082dd27c70d665b5fcec7386f342b69ddab8b330a33af3",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [
+        "UNAUTHORIZED_APPROVAL_CLAIM"
+      ],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "overlap_exceptions": {
+      "sha256": "816008f76e90ad19edb57124e3f2eaa27886ec36e8be817ec054b185e0f4f01f",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "unit_mismatch": {
+      "sha256": "d6a78908062017d35d6adf6d18a979d914d49a507def6c11fc3486eaea8a2c61",
+      "expected_status": "CHANGES_REQUIRED",
+      "expected_finding_kinds": [
+        "UNIT_MISMATCH"
+      ],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "hours_equivalent": {
+      "sha256": "f3656ff28c105f3fe809cef94758a73c268e2e23e3935d43e0c7de6fa7c46097",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [],
+      "config": {},
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "model_truncated": {
+      "sha256": "1dec0349369837041e4a4ec8a19f714260f4f87ced2281d13649e26dab7a78b8",
+      "expected_status": "INCOMPLETE",
+      "expected_finding_kinds": [
+        "MODEL_JSON_INVALID"
+      ],
+      "config": {
+        "model_scenario": "truncated",
+        "model_required": true
+      },
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "model_invented_ref": {
+      "sha256": "57a182fbbc4b4bd43ff5aae4a234d9299a577685b42e42b06a742ecab182bd1d",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [
+        "INVENTED_REFERENCE"
+      ],
+      "config": {
+        "model_scenario": "invented_ref"
+      },
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "model_conflicting": {
+      "sha256": "aa31e4ab750f9fa30bd76d5b4894b5585d9657666a86ab78e5c80045f11c3405",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [
+        "CONFLICTING_MODEL_CLAIMS"
+      ],
+      "config": {
+        "model_scenario": "conflicting"
+      },
+      "description": "Four-rule support routing policy with ordered precedence."
+    },
+    "model_valid_finding": {
+      "sha256": "94970d00beea7a63e9722004609c1b8edf6441fe3e251b0a8a9bef62c26c7f85",
+      "expected_status": "PASS",
+      "expected_finding_kinds": [
+        "SEMANTIC_NUANCE"
+      ],
+      "config": {
+        "model_scenario": "valid_finding"
+      },
+      "description": "Four-rule support routing policy with ordered precedence."
+    }
+  }
+}
